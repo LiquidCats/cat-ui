@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+
+import {ThemeProvider} from "react-jss";
+
+import whiteTheme from "./theme.white";
+
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <ThemeProvider theme={whiteTheme}>
+          test
+      </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
