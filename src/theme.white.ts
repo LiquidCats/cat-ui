@@ -35,7 +35,20 @@ export const whiteTheme = {
             default: 5
         }
     },
-    transaction: ".3s ease-in-out"
+    transaction: ".3s ease-in-out",
+    grid: {
+        padding: 4,
+    },
+    screen: {
+        size: {
+            xs: '100%',
+            sm: 540,
+            md: 720,
+            lg: 960,
+            xl: 1140,
+            xxl: 1320,
+        }
+    }
 };
 
 export type UI = typeof whiteTheme;

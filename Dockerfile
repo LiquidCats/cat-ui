@@ -1,8 +1,11 @@
 FROM node:current-alpine
 
-RUN apk add yarn
 WORKDIR /var/www/cat-ui
+
 ADD ./ ./
+
+RUN apk add yarn
+RUN yarn
 
 CMD yarn start
 
