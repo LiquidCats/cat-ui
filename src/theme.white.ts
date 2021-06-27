@@ -13,6 +13,15 @@ const backgrounds = {
     black: 'rgba(0, 0, 0, 0.2)',
 }
 
+const breakpoints = {
+    xs: 0,
+    sm: 576,
+    md: 768,
+    lg: 992,
+    xl: 1200,
+    xxl: 1400,
+}
+
 export const whiteTheme = {
     font: {
         size: {
@@ -38,6 +47,11 @@ export const whiteTheme = {
     transaction: ".3s ease-in-out",
     grid: {
         padding: 4,
+        columns: 12,
+        breakpoints: {
+            keys: Object.keys(breakpoints),
+            values: breakpoints,
+        },
     },
     screen: {
         size: {
