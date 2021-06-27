@@ -21,7 +21,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<HTMLButtonElem
         onClick = groupContext.onClick,
         ...rest
     } = props;
-    const cls = useStyles({theme, color, variant, weight, fixedWidth})
+    const cls = useStyles({theme, color, variant, weight, fixedWidth, grouped: groupContext?.grouped || false})
     //
     const classes = clsx(cls.button, cls[variant], className)
     //
