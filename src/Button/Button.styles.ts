@@ -3,16 +3,22 @@ import {UI} from "../theme.white";
 import {ButtonProps} from "./Button.types";
 import {ButtonColorsEnum, ButtonWeightEnum} from "./Button.enums";
 
-const useStyles = createUseStyles<string, ButtonProps, UI>({
+const useStyles = createUseStyles<string, ButtonProps & {grouped: boolean}, UI>({
     button: {
+        margin: 8,
+        display: 'inline-flex',
+        boxShadow: 'border-box',
+        position: 'relative',
         outline: 'none',
+        alignItems: 'center',
+        verticalAlign: 'middle',
+        justifyContent: 'center',
         fontWeight: ({theme}) => theme.font.weight.bold,
         fontSize: ({theme}) => theme.font.size.small,
         fontFamily: ({theme}) => theme.font.family,
         borderRadius: ({theme}) => theme.border.radius.default,
         cursor: 'pointer',
         textTransform: 'uppercase',
-        position: 'relative',
         wordWrap: 'unset',
         transition: ({theme}) => theme.transaction,
         minWidth: ({theme, ...props}) => {
