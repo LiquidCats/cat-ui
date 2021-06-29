@@ -18,7 +18,7 @@ const ButtonGroup = forwardRef<HTMLDivElement, HTMLAttributes<ButtonGroupProps>>
     const cls = useStyles({theme});
     const classes = clsx(cls.group, className);
     return <div {...rest} className={classes} ref={ref}>
-        <ButtonGroupContext.Provider value={{onClick}}>
+        <ButtonGroupContext.Provider value={{onClick, grouped: true}}>
             {children}
         </ButtonGroupContext.Provider>
     </div>
