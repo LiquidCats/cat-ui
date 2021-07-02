@@ -215,3 +215,5 @@ yarn.lock
 .yarn/install-state.gz
 .pnp.*
 .storybook/
+
+./src/Gallery.component.tsx
