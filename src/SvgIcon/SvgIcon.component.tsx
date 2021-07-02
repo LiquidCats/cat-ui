@@ -2,7 +2,6 @@ import React, {forwardRef, SVGAttributes} from "react";
 import { SvgIconProps } from "./SvgIcon.types";
 import clsx from "clsx";
 
-
 const SvgIcon = forwardRef<SVGSVGElement, SVGAttributes<SVGSVGElement> & SvgIconProps>((props, ref) => {
     const {
         src,
@@ -33,5 +32,9 @@ const SvgIcon = forwardRef<SVGSVGElement, SVGAttributes<SVGSVGElement> & SvgIcon
         children={children}
     />
 })
+
+if (process.env.NODE_ENV !== 'production') {
+    SvgIcon.displayName = 'SvgIcon'
+}
 
 export default SvgIcon
