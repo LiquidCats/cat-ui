@@ -2,10 +2,22 @@ import {createUseStyles} from "react-jss";
 import {UI} from "../theme.white";
 import {ButtonProps} from "./Button.types";
 import {ButtonColorsEnum, ButtonWeightEnum} from "./Button.enums";
+import {JssValue} from "jss";
 
-const useStyles = createUseStyles<string, ButtonProps & {grouped: boolean}, UI>({
+const colorSwitch = <T extends {theme: UI} & ButtonProps>({theme, color = 'default'}: T): JssValue => {
+    if (ButtonColorsEnum.PRIMARY === color) return theme.colors.blue
+    if (ButtonColorsEnum.SECONDARY === color) return theme.colors.red
+    return theme.colors.black
+};
+const backgroundSwitch = <T extends {theme: UI} & ButtonProps>({theme, color = 'default'}: T): JssValue => {
+    if (ButtonColorsEnum.PRIMARY === color) return theme.backgrounds.blue
+    if (ButtonColorsEnum.SECONDARY === color) return theme.backgrounds.red
+    return theme.backgrounds.black
+};
+
+const useStyles = createUseStyles<string, ButtonProps, UI>({
     button: {
-        margin: 8,
+        margin: 9,
         display: 'inline-flex',
         boxShadow: 'border-box',
         position: 'relative',
@@ -35,16 +47,8 @@ const useStyles = createUseStyles<string, ButtonProps & {grouped: boolean}, UI>(
     },
     outlined: {
         border: ({theme, ...props}) => [[1, 'solid']],
-        borderColor: ({theme, ...props}) => {
-            if (ButtonColorsEnum.PRIMARY === props.color) return theme.colors.blue
-            if (ButtonColorsEnum.SECONDARY === props.color) return theme.colors.red
-            return theme.colors.black
-        },
-        color: ({theme, ...props}) => {
-            if (ButtonColorsEnum.PRIMARY === props.color) return theme.colors.blue
-            if (ButtonColorsEnum.SECONDARY === props.color) return theme.colors.red
-            return theme.colors.black
-        },
+        borderColor: colorSwitch,
+        color: colorSwitch,
         //
         backgroundColor: 'transparent',
         '&:disabled': {
@@ -58,21 +62,13 @@ const useStyles = createUseStyles<string, ButtonProps & {grouped: boolean}, UI>(
             backgroundColor: "transparent",
         },
         '&:hover': {
-            backgroundColor: ({theme, ...props}) => {
-                if (ButtonColorsEnum.PRIMARY === props.color) return theme.backgrounds.blue
-                if (ButtonColorsEnum.SECONDARY === props.color) return theme.backgrounds.red
-                return theme.backgrounds.black
-            },
+            backgroundColor: backgroundSwitch,
         },
         '&:active': {
             transform: 'scale(0.98)',
         },
         '&:focus': {
-            backgroundColor: ({theme, ...props}) => {
-                if (ButtonColorsEnum.PRIMARY === props.color) return theme.backgrounds.blue
-                if (ButtonColorsEnum.SECONDARY === props.color) return theme.backgrounds.red
-                return theme.backgrounds.black
-            },
+            backgroundColor: backgroundSwitch,
         }
     },
     default: {
@@ -95,7 +91,6 @@ const useStyles = createUseStyles<string, ButtonProps & {grouped: boolean}, UI>(
             cursor: "not-allowed",
             color: ({theme}) => theme.colors.gray,
             backgroundColor: ({theme}) => theme.backgrounds.gray,
-
         },
         '&:disabled:hover': {
             color: ({theme}) => theme.colors.gray,
@@ -132,11 +127,7 @@ const useStyles = createUseStyles<string, ButtonProps & {grouped: boolean}, UI>(
     },
     text: {
         border: 0,
-        color: ({theme, ...props}) => {
-            if (ButtonColorsEnum.PRIMARY === props.color) return theme.colors.blue
-            if (ButtonColorsEnum.SECONDARY === props.color) return theme.colors.red
-            return theme.colors.black
-        },
+        color: colorSwitch,
         backgroundColor: 'transparent',
         '&:disabled': {
             cursor: "not-allowed",
@@ -148,23 +139,15 @@ const useStyles = createUseStyles<string, ButtonProps & {grouped: boolean}, UI>(
             backgroundColor: "transparent",
         },
         '&:hover': {
-            backgroundColor: ({theme, ...props}) => {
-                if (ButtonColorsEnum.PRIMARY === props.color) return theme.backgrounds.blue
-                if (ButtonColorsEnum.SECONDARY === props.color) return theme.backgrounds.red
-                return theme.backgrounds.black
-            },
+            backgroundColor: backgroundSwitch,
         },
         '&:active': {
             transform: 'scale(0.98)',
         },
         '&:focus': {
-            backgroundColor: ({theme, ...props}) => {
-                if (ButtonColorsEnum.PRIMARY === props.color) return theme.backgrounds.blue
-                if (ButtonColorsEnum.SECONDARY === props.color) return theme.backgrounds.red
-                return theme.backgrounds.black
-            },
+            backgroundColor: backgroundSwitch,
         }
     },
-});
+}, {name: 'button'});
 
 export default useStyles;
